@@ -1,7 +1,7 @@
 ## Game-Of-Greed
 
 ## link of PR
-[Link-PR-open]( https://github.com/Tareq-Zeyad/Game-Of-Greed/compare/version1?expand=1  )
+[Link-PR-open](https://github.com/Tareq-Zeyad/Game-Of-Greed/compare/version1?expand=1)
 [link-PR](https://github.com/Tareq-Zeyad/Game-Of-Greed/pull/1)
 
 ## Group 5:
