@@ -8,7 +8,7 @@
 import pytest
 from game_of_greed.game_logic import GameLogic
 
-pytestmark = [pytest.mark.version_1]
+pytestmark = [pytest.mark.flow]
 
 
 def test_1_dice():
