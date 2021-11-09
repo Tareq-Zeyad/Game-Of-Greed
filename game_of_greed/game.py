@@ -17,7 +17,7 @@ class Game:
         self.round_num = round_num
         self.banker = Banker()
 
-    def play(self, roller):
+    def play(self, roller=None):
         """
         Description: Starts a new game with multiple options, such as enter, quit and bank which are depending on the user choice.
         Args:
@@ -25,7 +25,7 @@ class Game:
         """
         new_game = GameLogic()
         print("Welcome to Game of Greed")
-        print("(y)es to play or (n)o to decline")
+        print("Wanna play?")
         wanna_play = input("> ").lower()
         self.round_num += 1
         if wanna_play == "n" or wanna_play == "no":
@@ -35,13 +35,14 @@ class Game:
             print(f"Starting round {self.round_num}")
             print(f"Rolling {new_game.dice_num} dice...")
 
-            a = roller(new_game.dice_num)
-            b = str(a).replace(",", "").replace("[", "").replace("]", "")
+            a = new_game.roll_dice(new_game.dice_num)
+            # print('test a', a)
+            b = str(a).replace("(", "").replace(")", "")
 
             earned_points = new_game.calculate_score(a)
 
-            print(f"*** {b} ***")
-            print("Enter dice to keep, or (q)uit:")
+            print(b)
+            print("Enter dice to keep (no spaces), or (q)uit:")
             keep_q = input("> ").lower()
 
             if keep_q == "q" or keep_q == "quit":
@@ -62,6 +63,8 @@ class Game:
 
                 if roll_again == "q" or roll_again == "quit":
                     print(
+                        f"Total score is {self.banker.balance} points")
+                    print(
                         f"Thanks for playing. You earned {self.banker.balance} points")
                     break
 
@@ -74,15 +77,17 @@ class Game:
                     self.round_num += 1
                 print(f"Starting round {self.round_num}")
                 print(f"Rolling {new_game.dice_num} dice...")
-                a = roller(new_game.dice_num)
-                b = str(a).replace(",", "").replace("[", "").replace("]", "")
+                a = new_game.roll_dice(new_game.dice_num)
+                b = str(a).replace("(", "").replace(")", "")
 
                 earned_points = new_game.calculate_score(a)
 
-                print(f"*** {b} ***")
-                print("Enter dice to keep, or (q)uit:")
+                print(b)
+                print("Enter dice to keep (no spaces), or (q)uit:")
                 keep_q = input("> ").lower()
                 if keep_q == "q" or keep_q == "quit":
+                    print(
+                        f"Total score is {self.banker.balance} points")
                     print(
                         f"Thanks for playing. You earned {self.banker.balance} points")
 
@@ -99,4 +104,4 @@ class Game:
 
 if __name__ == "__main__":
     p1 = Game()
-    p1.play(any)
+    p1.play()
