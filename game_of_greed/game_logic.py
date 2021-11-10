@@ -56,6 +56,37 @@ class GameLogic:
                     score += 0
         return score
 
+    @staticmethod
+    def get_scorers(_input):
+        keep_points_tuple = [int(i) for i in _input]
+        all_dices_score = GameLogic.calculate_score(keep_points_tuple)
+        if all_dices_score == 0:
+            return ()
+        else:
+            list_of_scorers = []
+        _input = list(_input)
+        for i in range(len(_input)):
+            roll = _input[:i] + _input[i + 1:]
+            score = GameLogic.calculate_score(roll)
+            if score != all_dices_score:
+                list_of_scorers.append(_input[i])
+                return tuple(list_of_scorers)
+
+    @staticmethod
+    def validate_keepers(roll, keepers):
+        _rolled_dice = list(roll)
+        _input = [int(i) for i in keepers]
+
+        if len(_input) > len(_rolled_dice):
+            return False
+        for i in _input:
+            if i in _rolled_dice:
+                _rolled_dice.remove(i)
+            else:
+                return False
+
+        return True
+
 
 if __name__ == "__main__":
     print(GameLogic.calculate_score((4, 3, 2, 2, 5, 6)))
